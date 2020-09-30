@@ -36,7 +36,7 @@ class genero_controller:
         ===================================
         ''')
         generos = self.genero.obtener_generos('genero_id')
-        print(print_table(cursos, ['ID', 'genero']))
+        print(print_table(generos, ['genero_id', 'genero']))
         input("\nPresione una tecla para continuar...")
 
     def buscar_genero(self):
@@ -48,7 +48,7 @@ class genero_controller:
         try:
             genero_id = input_data("Ingrese el ID del genero >> ", "int")
             genero = self.genero.obtener_genero({'id_genero': genero_id})
-            print(print_table(curso, ['ID', 'descripcion']))
+            print(print_table(genero, ['genero_id', 'descripcion']))
 
             if genero:
                 if pregunta("¿Deseas editar el genero literario?"):
@@ -89,7 +89,7 @@ class genero_controller:
 
     def eliminar_genero(self, genero_id):
         self.genero.eliminar_genero({
-            'genero_id': genero _id
+            'genero_id': genero_id
         })
         print('''
         ====================================

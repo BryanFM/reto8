@@ -1,6 +1,7 @@
 from helpers.menu import Menu
 from helpers.helper import input_data, print_table, pregunta
-
+from controllers.genero_controller import genero_controller
+from controllers.lector_controller import lector_controller
 
 def Bibliotecario():
     try:
@@ -9,14 +10,17 @@ def Bibliotecario():
             Sistema de Mantenimiento de la Biblioteca
         =================================================
         ''')
-        menu_principal = ['libros', 'autores', 'generos', 'editorial', ]
+        menu_principal = ['libros', 'autores', 'generos', 'editorial', 'usuarios', 'alquiler', 'estado de libro', 'estado de usuario', 'estado de alquiler', 'salir' ]
         respuesta = Menu(menu_principal).show()
         if respuesta == 1:
             pass
         elif respuesta == 2:
             pass
         elif respuesta == 3:
-            pass
+            genero = genero_controller()
+            genero()
+            if genero.salir:
+                Bibliotecario()
         elif respuesta == 4:
             pass
         elif respuesta == 5:
@@ -25,8 +29,12 @@ def Bibliotecario():
             pass
         elif respuesta == 7:
             pass
+        elif respuesta == 8:
+            pass
+        elif respuesta == 9:
+            pass
 
-        print("\nGracias por utilizar el sistema\n")
+        print("\nGracias por utilizar la biblioteca\n")
     except KeyboardInterrupt:
         print('\n Se interrumpio la aplicación')
     except Exception as e:

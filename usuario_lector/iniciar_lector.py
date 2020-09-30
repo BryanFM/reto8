@@ -2,7 +2,7 @@ from helpers.menu import Menu
 from helpers.helper import input_data, print_table, pregunta
 from classes.lector import Lector
 from controllers.lector_controller import lector_controller
-#from main import iniciar_app
+from busqueda.buscar_libro import buscar_libro
 
 def iniciar_sesion():
     print('''
@@ -19,7 +19,7 @@ def iniciar_sesion():
                 opciones = ['Buscar Libro', 'Editar Usuario', 'Eliminar Usuario', 'Salir']
                 respuesta = Menu(opciones).show()
                 if respuesta == 1:
-                    pass
+                    buscar_libro()
                 elif respuesta == 2:
                     lect = lector_controller()
                     lect.editar_lector()

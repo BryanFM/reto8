@@ -17,7 +17,7 @@ def Lector():
         elif respuesta == 2:
             iniciar_sesion()
 
-        print("\nGracias por utilizar el sistema\n")
+        print("\nGracias por utilizar la biblioteca\n")
     except KeyboardInterrupt:
         print('\n Se interrumpio la aplicación')
     except Exception as e:
