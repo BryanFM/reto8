@@ -1,4 +1,4 @@
-from classes.lector import lector
+from classes.lector import Lector
 from helpers.menu import Menu
 from helpers.helper import print_table, input_data, pregunta
 
@@ -17,7 +17,7 @@ class lector_controller:
                 menu = ['Listar Usuarios', 'Buscar Usuarios', "Nuevo Usuario", "Salir"]
                 respuesta = Menu(menu).show()
                 
-               if respuesta == 1:
+                if respuesta == 1:
                     self.listar_lectores()
                 elif respuesta == 2:
                     self.buscar_lector()
@@ -36,7 +36,7 @@ class lector_controller:
         ===========================
         ''')
         lectores = self.lector.obtener_lectores('lector_id')
-        print(print_table(lector, ['ID', 'Nombre', 'Edad', 'Correo']))
+        print(print_table(lector, ['ID', 'Nombre', 'Edad', 'DNI', 'Correo']))
         input("\nPresione una tecla para continuar...")
     def buscar_lector(self):
         print('''
@@ -47,9 +47,9 @@ class lector_controller:
         try:
             id_lector = input_data("Ingrese el ID del Usuario >> ", "int")
             lector = self.lector.obtener_lector({'lector_id': id_lector})
-            print(print_table(alumno, ['ID', 'Nombre', 'Edad', 'Correo']))
+            print(print_table(lector, ['ID', 'Nombre', 'Edad', 'DNI', 'Correo']))
 
-            if alumno:
+            if lector:
                 if pregunta("¿Deseas dar mantenimiento a la lista de Usuarios?"):
                     opciones = ['Editar Usuario', 'Eliminar Usuario', 'Salir']
                     respuesta = Menu(opciones).show()
@@ -63,6 +63,7 @@ class lector_controller:
     def insertar_lector(self):
         nombre = input_data("Ingrese el nombre del Usuario >> ")
         edad = input_data("Ingrese la edad del Usuario >> ")
+        DNI = input_data("Imgrese el DNI del Usuario >> ")
         correo = input_data("Ingrese el correo del Usuario >> ")
         self.lector.guardar_lector({
             'nombres': nombre,
@@ -79,12 +80,14 @@ class lector_controller:
     def editar_lector(self, id_lector):
         nombre = input_data("Ingrese el nuevo nombre del Usuario >> ")
         edad = input_data("Ingrese la nueva edad del Usuario >> ")
+        DNI = input_data("Imgrese el nuevo DNI del Usuario >> ")
         correo = input_data("Ingrese el nuevo correo del Usuario >> ")
         self.lector.modificar_lector({
             'alumno_id': id_alumno
         }, {
             'nombres': nombre,
             'edad': edad,
+            'DNI' : DNI,
             'correo': correo
         })
         print('''

@@ -1,6 +1,7 @@
 from helpers.menu import Menu
 from helpers.helper import input_data, print_table, pregunta
-
+from usuario_lector.nuevo_lector import nuevo_usuario
+from usuario_lector.iniciar_lector import iniciar_sesion
 
 def Lector():
     try:
@@ -12,11 +13,9 @@ def Lector():
         menu_principal = ['Nuevo Usuario', 'Iniciar', 'Salir']
         respuesta = Menu(menu_principal).show()
         if respuesta == 1:
-            pass
+            nuevo_usuario()
         elif respuesta == 2:
-            pass
-        elif respuesta == 3:
-            pass
+            iniciar_sesion()
 
         print("\nGracias por utilizar el sistema\n")
     except KeyboardInterrupt:
