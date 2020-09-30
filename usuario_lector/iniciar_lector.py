@@ -11,11 +11,11 @@ def iniciar_sesion():
     ========================
     ''')
     try:
-        id_lector = input_data("Ingrese la contraseña del Usuario >> ", "int")
-        lector = self.lector.obtener_lector({'lector_id': id_lector})
-        print(print_table(lector, ['ID', 'Nombre', 'Edad', 'DNI','Correo']))
+        lector_id = input_data("Ingrese la contraseña del Usuario >> ", "int")
+        lector = self.lector.obtener_lector({'id_lector': lector_id})
+        print(print_table(lector, ['lector_id', 'dni', 'nombres', 'apellidos','fecha_nacimiento']))
         if lector:
-            if pregunta("¿ Que Desea Realizar?"):
+            if pregunta("¿Que Desea Realizar?"):
                 opciones = ['Buscar Libro', 'Editar Usuario', 'Eliminar Usuario', 'Salir']
                 respuesta = Menu(opciones).show()
                 if respuesta == 1:

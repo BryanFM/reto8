@@ -36,7 +36,7 @@ class lector_controller:
         ===========================
         ''')
         lectores = self.lector.obtener_lectores('lector_id')
-        print(print_table(lector, ['ID', 'Nombre', 'Edad', 'DNI', 'Correo']))
+        print(print_table(lectores, ['lector_id', 'dni', 'nombres', 'apellidos', 'fecha_nacimiento', 'estado_lector_id']))
         input("\nPresione una tecla para continuar...")
     def buscar_lector(self):
         print('''
@@ -45,30 +45,31 @@ class lector_controller:
         ===========================
         ''')
         try:
-            id_lector = input_data("Ingrese el ID del Usuario >> ", "int")
-            lector = self.lector.obtener_lector({'lector_id': id_lector})
-            print(print_table(lector, ['ID', 'Nombre', 'Edad', 'DNI', 'Correo']))
+            lector_id = input_data("Ingrese el ID del Usuario >> ", "int")
+            lector = self.lector.obtener_lector({'id_lector': lector_id})
+            print(print_table(lector, ['lector_id', 'dni', 'nombres', 'apellidos', 'fecha_nacimiento', 'estado_lector_id']))
 
             if lector:
                 if pregunta("¿Deseas dar mantenimiento a la lista de Usuarios?"):
                     opciones = ['Editar Usuario', 'Eliminar Usuario', 'Salir']
                     respuesta = Menu(opciones).show()
                     if respuesta == 1:
-                        self.editar_lector(id_lector)
+                        self.editar_lector(lector_id)
                     elif respuesta == 2:
-                        self.eliminar_lector(id_lector)
+                        self.eliminar_lector(lector_id)
         except Exception as e:
             print(f'{str(e)}')
         input("\nPresione una tecla para continuar...")
     def insertar_lector(self):
-        nombre = input_data("Ingrese el nombre del Usuario >> ")
-        edad = input_data("Ingrese la edad del Usuario >> ")
-        DNI = input_data("Imgrese el DNI del Usuario >> ")
-        correo = input_data("Ingrese el correo del Usuario >> ")
+        dni = input_data("Imgrese el DNI del Usuario >> ")
+        nombres = input_data("Ingrese el nombre del Usuario >> ")
+        apellidos = input_data("Ingrese el apellido del Usuario >> ")
+        fecha_nacimiento = input_data("Ingrese la fecha de nacimiento del Usuario >> ")
         self.lector.guardar_lector({
-            'nombres': nombre,
-            'edad': edad,
-            'correo': correo
+            'dni' : dni,
+            'nombres': nombres,
+            'apellidos' : apellidos,
+            'fecha_nacimiento': fecha_nacimiento
         })
         print('''
         =================================
@@ -77,27 +78,27 @@ class lector_controller:
         ''')
         self.listar_lectores()
 
-    def editar_lector(self, id_lector):
-        nombre = input_data("Ingrese el nuevo nombre del Usuario >> ")
-        edad = input_data("Ingrese la nueva edad del Usuario >> ")
-        DNI = input_data("Imgrese el nuevo DNI del Usuario >> ")
-        correo = input_data("Ingrese el nuevo correo del Usuario >> ")
+    def editar_lector(self, lector_id):
+        dni = input_data("Imgrese el nuevo DNI del Usuario >> ")
+        nombres = input_data("Ingrese el nuevo nombre del Usuario >> ")
+        apellidos = input_data("Ingrese el nuevo apellido del Usuario >> ")
+        fecha_nacimiento = input_data("Ingrese la nueva fecha de nacimiento del Usuario >> ")
         self.lector.modificar_lector({
-            'alumno_id': id_alumno
+            'id_lector': lector_id
         }, {
-            'nombres': nombre,
-            'edad': edad,
-            'DNI' : DNI,
-            'correo': correo
+            'dni' : dni,
+            'nombres': nombres,
+            'apellidos' : apellidos,
+            'fecha_nacimiento': fecha_nacimiento
         })
         print('''
         ===================================
             Datos del Usuario Editado !
         ===================================
         ''')
-    def eliminar_lector(self, id_lector):
+    def eliminar_lector(self, lector_id):
         self.lector.eliminar_lector({
-            'lector_id': id_lector
+            'id_lector': lector_id
         })
         print('''
         ========================

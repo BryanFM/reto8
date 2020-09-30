@@ -46,18 +46,18 @@ class genero_controller:
         ==================================
         ''')
         try:
-            id_genero = input_data("Ingrese el ID del genero >> ", "int")
-            genero = self.genero.obtener_genero({'curso_id': id_curso})
-            print(print_table(curso, ['ID', 'Nombre']))
+            genero_id = input_data("Ingrese el ID del genero >> ", "int")
+            genero = self.genero.obtener_genero({'id_genero': genero_id})
+            print(print_table(curso, ['ID', 'descripcion']))
 
             if genero:
                 if pregunta("¿Deseas editar el genero literario?"):
                     opciones = ['Editar genero literario', 'Eliminar genero literario', 'Salir']
                     respuesta = Menu(opciones).show()
                     if respuesta == 1:
-                        self.editar_genero(id_genero)
+                        self.editar_genero(genero_id)
                     elif respuesta == 2:
-                        self.eliminar_genero(id_genero)
+                        self.eliminar_genero(genero_id)
         except Exception as e:
             print(f'{str(e)}')
         input("\nPresione una tecla para continuar...")
@@ -65,7 +65,7 @@ class genero_controller:
     def agregar_genero(self):
         nombre = input_data("Ingrese el nombre del genero literario >> ")
         self.genero.guardar_genero({
-            'nombre': nombre
+            'descripcion': descripcion
         })
         print('''
         ==========================================
@@ -74,12 +74,12 @@ class genero_controller:
         ''')
         self.listar_generos()
 
-    def editar_genero(self, id_genero):
+    def editar_genero(self, genero_id):
         nombre = input_data("Ingrese el nuevo nombre del Genero Literario >> ")
         self.genero.modificar_genero({
-            'genero_id': id_genero
+            'id_genero': genero_id
         }, {
-            'nombre': nombre
+            'descripcion': descripcion
         })
         print('''
         ==================================
@@ -87,9 +87,9 @@ class genero_controller:
         ==================================
         ''')
 
-    def eliminar_genero(self, id_genero):
+    def eliminar_genero(self, genero_id):
         self.genero.eliminar_genero({
-            'genero_id': id_genero
+            'genero_id': genero _id
         })
         print('''
         ====================================
