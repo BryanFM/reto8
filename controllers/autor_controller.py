@@ -89,7 +89,7 @@ class Autor_controller:
             'id': id_autor
         }, {
             'nombres': nombres,
-            'apellidos': apelldidos
+            'apellidos': apelldidos,
             'fecha_nacimiento': fecha_nacimiento
         })
         print('''
