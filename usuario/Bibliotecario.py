@@ -2,6 +2,8 @@ from helpers.menu import Menu
 from helpers.helper import input_data, print_table, pregunta
 from controllers.genero_controller import genero_controller
 from controllers.lector_controller import lector_controller
+from controllers.editorial_controller import Editorial_controller
+from controllers.estado_lector import estado_lector_controller
 
 def Bibliotecario():
     try:
@@ -22,7 +24,10 @@ def Bibliotecario():
             if genero.salir:
                 Bibliotecario()
         elif respuesta == 4:
-            pass
+            editorial = Editorial_controller()
+            editorial()
+            if editorial.salir:
+                Bibliotecario()
         elif respuesta == 5:
             pass
         elif respuesta == 6:
@@ -30,7 +35,10 @@ def Bibliotecario():
         elif respuesta == 7:
             pass
         elif respuesta == 8:
-            pass
+            estadolec = estado_lector_controller()
+            estadolec()
+            if estadolec.salir:
+                Bibliotecario()
         elif respuesta == 9:
             pass
 
