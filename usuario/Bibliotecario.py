@@ -4,6 +4,9 @@ from controllers.genero_controller import genero_controller
 from controllers.lector_controller import lector_controller
 from controllers.editorial_controller import Editorial_controller
 from controllers.estado_lector import estado_lector_controller
+from controllers.libro_controller import Libro_controller
+from controllers.autor_controller import Autor_controller
+from controllers.estado_libro_controller import Estado_libro_controller
 
 def Bibliotecario():
     try:
@@ -15,9 +18,15 @@ def Bibliotecario():
         menu_principal = ['libros', 'autores', 'generos', 'editorial', 'usuarios', 'alquiler', 'estado de libro', 'estado de usuario', 'estado de alquiler', 'salir' ]
         respuesta = Menu(menu_principal).show()
         if respuesta == 1:
-            pass
+            libro = Libro_controller()
+            libro()
+            if libro.salir:
+                Bibliotecario()
         elif respuesta == 2:
-            pass
+            autor = Autor_controller()
+            autor()
+            if autor.salir:
+                Bibliotecario()
         elif respuesta == 3:
             genero = genero_controller()
             genero()
@@ -33,7 +42,10 @@ def Bibliotecario():
         elif respuesta == 6:
             pass
         elif respuesta == 7:
-            pass
+            estadolib = Estado_libro_controller()
+            estadolib()
+            if estadolib.salir:
+                Bibliotecario()
         elif respuesta == 8:
             estadolec = estado_lector_controller()
             estadolec()

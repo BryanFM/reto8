@@ -38,7 +38,7 @@ class Autor_controller:
         =========================
         ''')
         autores = self.autor.obtener_autores('id')
-        print(print_table(autores, ['ID', 'Nombres', 'Apellidos', 'Fecha de nacimiento']))
+        print(print_table(autor, ['ID', 'Nombres', 'Apellidos', 'Fecha de nacimiento']))
         input("\nPresione una tecla para continuar...")
 
     def buscar_autor(self):
