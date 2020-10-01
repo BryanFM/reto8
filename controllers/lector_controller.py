@@ -36,7 +36,7 @@ class lector_controller:
         ===========================
         ''')
         lectores = self.lector.obtener_lectores('lector_id')
-        print(print_table(lectores, ['lector_id', 'dni', 'nombres', 'apellidos', 'fecha_nacimiento', 'estado_lector_id']))
+        print(print_table(lector, ['lector_id', 'dni', 'nombres', 'apellidos', 'fecha_nacimiento', 'estado_lector_id']))
         input("\nPresione una tecla para continuar...")
     def buscar_lector(self):
         print('''
