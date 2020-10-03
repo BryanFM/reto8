@@ -38,7 +38,10 @@ def Bibliotecario():
             if editorial.salir:
                 Bibliotecario()
         elif respuesta == 5:
-            pass
+            lector = lector_controller()
+            lector()
+            if lector.salir:
+                Bibliotecario()
         elif respuesta == 6:
             pass
         elif respuesta == 7:
