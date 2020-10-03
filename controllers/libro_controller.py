@@ -50,7 +50,7 @@ class Libro_controller:
         try:
             id_libro = input_data("Ingrese el ID del libro >> ", "int")
             libro = self.libro.obtener_libro({'id': id_libro})
-            print(print_table(libro, ['ID', 'Nombres', 'Apellidos', 'Fecha de nacimiento']))
+            print(print_table(libro, ['ID', 'Nombres']))
 
             if libro:
                 if pregunta("¿Deseas dar mantenimiento al libro?"):
@@ -66,12 +66,8 @@ class Libro_controller:
 
     def insertar_libro(self):
         nombres = input_data("Ingrese el nombres del libro >> ")
-        apellidos = input_data("Ingrese Apellidos del libro >> ")
-        fecha_nacimiento = input_data("Ingrese Fecha de nacimiento del libro >> ")
         self.libro.guardar_libro({
-            'nombres': nombres,
-            'apellidos': Apellidos,
-            'fecha_nacimiento': fecha_nacimiento
+            'nombres': nombres
         })
         print('''
         ==============================
@@ -81,10 +77,7 @@ class Libro_controller:
         self.listar_libroes()
 
     def editar_libro(self, id_libro):
-        nombres = input_data("Ingrese nuevos nombres del libro >> ")
-        apellidos = input_data("Ingrese nuevos apellidos del libro >> ")
-        fecha_nacimiento = input_data("Ingrese fecha de nacimiento del libro >> ")
-        
+        nombres = input_data("Ingrese nuevos nombres del libro >> ")   
         self.libro.modificar_libro({
             'id': id_libro
         }, {
