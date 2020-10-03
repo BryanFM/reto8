@@ -38,7 +38,7 @@ class Libro_controller:
         ========================
         ''')
         libros = self.libro.obtener_libros('id')
-        print(print_table(libros, ['ID', 'Editorial', 'Nombres', 'Género', 'Estado']))
+        print(print_table(libros, ['ID', 'Nombres', 'Editorial', 'Género', 'Estado']))
         input("\nPresione una tecla para continuar...")
 
     def buscar_libro(self):
@@ -89,7 +89,7 @@ class Libro_controller:
             'id': id_libro
         }, {
             'nombres': nombres,
-            'apellidos': apelldidos
+            'apellidos': apelldidos,
             'fecha_nacimiento': fecha_nacimiento
         })
         print('''

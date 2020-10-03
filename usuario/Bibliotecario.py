@@ -2,6 +2,7 @@ from helpers.menu import Menu
 from helpers.helper import input_data, print_table, pregunta
 from controllers.genero_controller import genero_controller
 from controllers.lector_controller import lector_controller
+from controllers.libro_controller import Libro_controller
 
 def Bibliotecario():
     try:
@@ -13,7 +14,10 @@ def Bibliotecario():
         menu_principal = ['libros', 'autores', 'generos', 'editorial', 'usuarios', 'alquiler', 'estado de libro', 'estado de usuario', 'estado de alquiler', 'salir' ]
         respuesta = Menu(menu_principal).show()
         if respuesta == 1:
-            pass
+            libros = Libro_controller()
+            libros.menu()
+            if libros.salir:
+                iniciar_app()
         elif respuesta == 2:
             pass
         elif respuesta == 3:

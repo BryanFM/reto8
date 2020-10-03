@@ -6,7 +6,7 @@ class Conexion:
     def __init__(self, table_name):
         self.table_name = table_name
         self.db = connect(host='127.0.0.1', 
-                    user='chches', password='chches12344', database='sistema_biblioteca')
+                    user='postgres', password='R0s@N3gr@', database='sistema_biblioteca')
         self.cursor = self.db.cursor()
 
 
@@ -16,6 +16,30 @@ class Conexion:
 
     def get_all(self, order):
         query = f'SELECT * FROM {self.table_name} ORDER BY {order}'
+        self.cursor.execute(query)
+        return self.cursor.fetchall()
+
+    def get_all_inner(self, fields_select, table_select, order):
+
+        list_field_select = []
+        for t, list_field in fields_select.items():
+            for f in list_field.values():
+                list_field_select.append(f'{t}.{f}')
+                print(list_field_select)
+
+        # print(list_field_select)
+        list_table_inner = []
+        tabla_principal = ""
+        for t1, list_t2 in table_select.items():
+            tabla_principal = t1
+            for t2, list_f in list_t2.items():
+                for f1, f2 in list_f.items():
+                    list_table_inner.append(f'INNER JOIN {t2} ON {t1}.{f1} = {t2}.{f2}')
+
+        inner_join = tabla_principal + " " + " ".join(list_table_inner)
+        print(inner_join)
+        query = f'''SELECT {", ".join(list_field_select)} FROM {inner_join} ORDER BY {self.table_name}.{order}'''
+        print(query)
         self.cursor.execute(query)
         return self.cursor.fetchall()
 
@@ -45,7 +69,7 @@ class Conexion:
 
     def insert(self, data):
         values = "'" + "', '".join(map(str, data.values())) + "'"
-        query = f'INSERT INTO {self.table_name} ({", ".join(data.keys())}) VALUES ({values})'
+        query = f'INSERT INTO {self.table_name} ({", ".join(data.keys())}) VALUES ({values})' #'Charly', 'Chinchay', 1989-09-20'
         self.ejecutar_sentencia(query)
         return True
 
@@ -61,3 +85,7 @@ class Conexion:
         query = f'DELETE FROM {self.table_name} WHERE {"".join(map(str, id_object.keys()))} = {"".join(map(str, id_object.values()))}'
         self.ejecutar_sentencia(query)
         return True
+
+
+# test_conexion = Conexion('libro')
+# print(test_conexion.table_name)

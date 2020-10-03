@@ -10,8 +10,38 @@ class Libro:
     def obtener_libro(self, id_libro):
         return self.model.get_by_id(id_libro)
 
-    def obtener_libros(self, order):
-        return self.model.get_all(order)
+    def obtener_libros(self,  order):
+        fields_select = {
+            'libro' : {
+                '1' : 'id',
+                '2' : 'nombres'
+            },
+            'editorial' : {
+                '1' : 'nombres'
+            },
+            'genero' : {
+                '1' : 'descripcion'
+            },
+            'estado_libro' : {
+                '1' : 'descripcion'
+            }
+
+        }
+        table_select = {
+
+            'libro' : {
+                'editorial' : {
+                    'ideditorial' : 'id'
+                },
+                'genero' : {
+                    'idgenero' : 'id'
+                },
+                'estado_libro' : {
+                    'idestlibro' : 'id'
+                }
+            }
+        }
+        return self.model.get_all_inner(fields_select, table_select, order)
 
     def buscar_libro(self, data_libro):
         return self.model.get_by_column(data_libro)
